@@ -1,0 +1,12 @@
+{
+  "name": "agent-blueprint",
+  "description": "A collection of agent configurations, skills, and workflows for software projects",
+  "version": "0.1.0",
+  "author": {
+    "name": "Pier8"
+  },
+  "license": "MIT",
+  "keywords": ["agents", "skills", "workflows"],
+  "agents": "./agents/",
+  "skills": "./skills/"
+}
