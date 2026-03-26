@@ -1,6 +1,6 @@
 {
   "name": "agent-blueprint",
-  "description": "A collection of agent configurations, skills, and workflows for software projects",
+  "description": "Multi-agent orchestration for Claude Code — planning, review, security audits, and structured execution workflows. Inspired by Weave.",
   "version": "0.1.0",
   "author": {
     "name": "Pier8"
