@@ -13,5 +13,9 @@
     "./agents/reviewer.md",
     "./agents/auditor.md"
   ],
-  "skills": ["./skills/"]
+  "skills": [
+    "./skills/plan/",
+    "./skills/review/",
+    "./skills/start-work/"
+  ]
 }
