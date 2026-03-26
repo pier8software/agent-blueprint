@@ -7,6 +7,11 @@
   },
   "license": "MIT",
   "keywords": ["agents", "skills", "workflows"],
-  "agents": "./agents/",
-  "skills": "./skills/"
+  "agents": [
+    "./agents/planner.md",
+    "./agents/researcher.md",
+    "./agents/reviewer.md",
+    "./agents/auditor.md"
+  ],
+  "skills": ["./skills/"]
 }
