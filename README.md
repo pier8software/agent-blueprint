@@ -56,7 +56,7 @@ scripts/                     # TypeScript hook/utility scripts
 
 ## Adding Custom Agents
 
-Create a new `.md` file in `agents/`:
+Create a new `.md` file in `agents/` and register it in `.claude-plugin/plugin.json`:
 
 ```markdown
 ---
@@ -69,9 +69,19 @@ maxTurns: 20
 System prompt for the agent goes here.
 ```
 
+Then add the path to the `agents` array in `plugin.json`:
+
+```json
+"agents": [
+  "./agents/my-agent.md"
+]
+```
+
+**Note:** Each agent file must be listed explicitly — directory paths are not supported.
+
 ## Adding Custom Skills
 
-Create a new directory in `skills/` with a `SKILL.md`:
+Create a new directory in `skills/` with a `SKILL.md` and register it in `.claude-plugin/plugin.json`:
 
 ```markdown
 ---
@@ -81,5 +91,15 @@ description: When and why Claude should use this skill.
 
 Instructions for the skill go here.
 ```
+
+Then add the skill directory to the `skills` array in `plugin.json`:
+
+```json
+"skills": [
+  "./skills/my-skill/"
+]
+```
+
+**Note:** Each skill directory must be listed explicitly — parent directory paths are not supported.
 
 Skills are invoked with `/agent-blueprint:<skill-name>`.
