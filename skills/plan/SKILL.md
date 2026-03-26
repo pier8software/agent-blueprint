@@ -1,6 +1,6 @@
 ---
 name: plan
-description: Orchestrate the Plan-Review-Execute workflow for complex tasks. Delegates to Pattern for planning, Weft/Warp for review, and start-work for execution.
+description: Orchestrate the Plan-Review-Execute workflow for complex tasks. Delegates to Planner for planning, Reviewer/Auditor for review, and start-work for execution.
 ---
 
 You are now orchestrating a structured workflow for a complex task. Follow this protocol precisely.
@@ -15,34 +15,34 @@ Do NOT use this workflow for: quick fixes, single-file changes, simple questions
 
 ## Phase 1: PLAN
 
-Delegate to the **pattern** agent to produce a structured plan.
+Delegate to the **planner** agent to produce a structured plan.
 
-- Pattern researches the codebase and produces a plan saved to `.weave/plans/{name}.md`
+- Planner researches the codebase and produces a plan saved to `.blueprint/plans/{name}.md`
 - The plan contains `- [ ]` checkboxes for every actionable item
-- Pattern ONLY writes `.md` files in `.weave/` — it never writes code
+- Planner ONLY writes `.md` files in `.blueprint/` — it never writes code
 
 Before delegating, tell the user what you're doing:
-> "Delegating to Pattern to analyze the codebase and create an implementation plan..."
+> "Delegating to Planner to analyze the codebase and create an implementation plan..."
 
-After Pattern returns, summarize what was produced:
-> "Pattern saved the plan to `.weave/plans/{name}.md` with N tasks."
+After Planner returns, summarize what was produced:
+> "Planner saved the plan to `.blueprint/plans/{name}.md` with N tasks."
 
 ## Phase 2: REVIEW
 
 After the plan is created, validate it before execution.
 
-**Weft review** (code quality):
-- TRIGGER: Plan touches 3+ files OR has 5+ tasks — Weft review is mandatory
+**Reviewer review** (code quality):
+- TRIGGER: Plan touches 3+ files OR has 5+ tasks — Reviewer review is mandatory
 - SKIP ONLY IF: User explicitly says "skip review"
-- Weft reads the plan, verifies file references exist, checks each task has enough context
-- If Weft rejects: send the blocking issues back to Pattern for revision, then re-review
+- Reviewer reads the plan, verifies file references exist, checks each task has enough context
+- If Reviewer rejects: send the blocking issues back to Planner for revision, then re-review
 
-**Warp review** (security):
+**Auditor review** (security):
 - MANDATORY if the plan touches security-relevant areas: auth, crypto, certificates, tokens, signatures, input validation, secrets, passwords, sessions, CORS, CSP, `.env` files, or OAuth/OIDC/SAML flows
-- When in doubt, invoke Warp — false positives (fast APPROVE) are cheap
-- Warp self-triages: if no security-relevant changes, it fast-exits with APPROVE
+- When in doubt, invoke Auditor — false positives (fast APPROVE) are cheap
+- Auditor self-triages: if no security-relevant changes, it fast-exits with APPROVE
 
-Run Weft and Warp in parallel when both are needed.
+Run Reviewer and Auditor in parallel when both are needed.
 
 ## Phase 3: EXECUTE
 
@@ -52,7 +52,7 @@ Tell the user:
 > "Plan is reviewed and ready. Run `/agent-blueprint:start-work` to begin execution."
 
 The start-work skill will:
-- Load the plan from `.weave/plans/`
+- Load the plan from `.blueprint/plans/`
 - Work through tasks sequentially, marking `- [ ]` → `- [x]` as each completes
 - Verify each task against its acceptance criteria before marking done
 - Run a post-execution self-review when all tasks are complete
@@ -62,7 +62,7 @@ The start-work skill will:
 After execution completes, suggest a final review:
 > "Execution complete. Run `/agent-blueprint:review` to audit the changes."
 
-The review skill dispatches Weft and Warp against the actual code changes.
+The review skill dispatches Reviewer and Auditor against the actual code changes.
 
 If either reviewer rejects: present the blocking issues to the user for decision. Do not auto-fix — the user decides how to proceed.
 
@@ -75,9 +75,9 @@ Every delegation MUST follow this pattern:
 3. The user should NEVER see a blank pause with no explanation
 
 Duration hints:
-- Pattern (planning): "This may take a moment — Pattern is researching the codebase and writing a detailed plan..."
-- Spindle (web research): "Spindle is fetching external docs — this may take a moment..."
-- Weft/Warp (review): "Running review — this will take a moment..."
+- Planner (planning): "This may take a moment — Planner is researching the codebase and writing a detailed plan..."
+- Researcher (web research): "Researcher is fetching external docs — this may take a moment..."
+- Reviewer/Auditor (review): "Running review — this will take a moment..."
 
 ## Style
 

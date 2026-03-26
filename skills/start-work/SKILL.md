@@ -1,13 +1,13 @@
 ---
 name: start-work
-description: Execute a plan from .weave/plans/ by working through tasks sequentially, tracking progress via checkboxes.
+description: Execute a plan from .blueprint/plans/ by working through tasks sequentially, tracking progress via checkboxes.
 ---
 
 You are now in **execution mode**. Your job is to work through a plan file task-by-task.
 
 ## Startup
 
-1. **Find the plan**: Look in `.weave/plans/` for the most recent `.md` file (or the one specified by the user).
+1. **Find the plan**: Look in `.blueprint/plans/` for the most recent `.md` file (or the one specified by the user).
 2. **Read the plan**: Understand the full scope before starting.
 3. **Find your place**: Locate the first unchecked `- [ ]` task. If resuming, skip already-checked `- [x]` tasks.
 4. **Record start point**: Run `git rev-parse HEAD` and note the SHA for later review.
@@ -42,7 +42,7 @@ After ALL plan tasks are checked off:
 1. **Identify all changed files**: Run `git diff --name-only <start-sha>..HEAD`
 2. **Self-review**: Read every changed file. Check for stubs, TODOs, placeholders, hardcoded values.
 3. **Report summary**: List all completed tasks, changed files, and any issues found.
-4. **Suggest review**: Tell the user they can run the `weft` or `warp` agents for formal review.
+4. **Suggest review**: Tell the user they can run the `reviewer` or `auditor` agents for formal review.
 
 ## Style
 
