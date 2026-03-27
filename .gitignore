@@ -1,3 +1,7 @@
+## User Specific
+.idea/
+
+## Node / Typescript
 node_modules/
 dist/
 build/
